@@ -1,35 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NextImage from "next/image";
 import Hdfc from "../assets/hdfc_bank.png";
-import Visa from "../assets/Visa_Inc._logo.svg";
+import ICICI from "../assets/icici_bank.png";
+import SBI from "../assets/sbi_bank.png";
+import Visa from "../assets/Visa.svg";
 import Master from "../assets/master.png";
 
-const CreditCard = () => {
-  const [bank, setBank] = useState(null);
-  const [provider, setProvider] = useState(null);
+const CreditCard = (props) => {
+  // const [bank, setBank] = useState(null);
+  // const [provider, setProvider] = useState(null);
+  const [cardData, setCardData] = useState({
+    bank: ICICI,
+    title: "ICICI Premium",
+    color: "Purple",
+    provider: null
+  });
 
-  const [cardData, setCardData] = useState(null);
-
-  const fillCardData = () => {
-    if (bank === "Hdfc") {
-      setCardData({ ...cardData, bank: Hdfc });
+  useEffect(() => {
+    console.log(props);
+    if (props.bank_name === "Hdfc") {
+      console.log("heyya");
+      setCardData({...cardData, bank: "Hdfc"
+        // title: "HDFC BUSINESS MONEYBACK",
+        // color: "gray"
+      });
     }
-    if (provider === "Visa") {
+    if (props.bank_name === "ICICI") {
+      setCardData({
+        ...cardData,
+        bank: ICICI,
+        title: "ICICI Premium",
+        color: "purple"
+      });
+    }
+    if (props.bank_name === "SBI") {
+      console.log("heyya");
+      // setCardData({
+      //   ...cardData,
+      //   bank: SBI,
+      //   title: "Simply Save",
+      //   color: "blue"
+      // });
+    }
+    if (props.provider_name === "Visa") {
       setCardData({ ...cardData, provider: Visa });
     }
-    if (provider === "Master") {
+    if (props.provider_name === "Master") {
       setCardData({ ...cardData, provider: Master });
     }
-  };
-
+    console.log(cardData);
+  }, []);
   return (
     <>
-      <div className="flex shrink-0 flex-col just-fy-between w-56 h-40 sm:w-96 sm:h-52 bg-gradient-to-r from-gray-100 to-gray-600 rounded-lg p-6">
-        <div className="flex justify-between w-full h-full">
+      <div
+      // className={`flex shrink-0 flex-col just-fy-between w-56 h-40 sm:w-96 sm:h-52 bg-gradient-to-r from-${cardData.color}-100 to-${cardData.color}-600 rounded-lg p-6`}
+      >
+        {console.log(cardData)}
+        {/* <div className="flex justify-between w-full h-full">
           <p className="w-36 text-base font-bold tracking-wide leading-snug text-gray-800 uppercase">
-            HDFC BUSINESS MONEYBACK
+            {cardData.title}
           </p>
-          <img src={cardData?.bank?.src} alt="" className="h-6" />
+          <img src={cardData.bank} alt="" className="h-6" />
         </div>
         <div className="flex justify-between items-center">
           <div className="inline-flex flex-col items-start justify-start">
@@ -40,8 +71,8 @@ const CreditCard = () => {
               ASHISH KASHyap
             </p>
           </div>
-          <img alt="" className="h-6" src={cardData?.provider?.src} />
-        </div>
+          <img alt="" className="h-6" src={cardData.provider} />
+        </div> */}
       </div>
       {/* <div className="flex flex-col">
       <label for="bank">Bank Name (Hdfc)</label>

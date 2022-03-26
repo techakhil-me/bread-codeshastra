@@ -3,12 +3,29 @@ import Head from "next/head";
 import Image from "next/image";
 import CreditCard from "../components/CreditCard";
 import Coupon from "../components/Coupon";
-import { useEffect } from "react";
-const Home: NextPage = () => {
-  const [Cards, setCards] = useState([]);
+import Navbar from "../components/Navbar";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { json } from "stream/consumers";
 
+const Home: NextPage = () => {
+  const router = useRouter();
+  const [Cards, setCards] = useState([]);
   useEffect(() => {
-    fetch();
+    if (!localStorage.getItem("userId")) {
+      router.push("/login");
+    }
+    fetch("https://bread-backend.herokuapp.com/card/getcards", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId: localStorage.getItem("userId") })
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        setCards(result.data);
+        // console.log(result.data);
+      })
+      .catch((error) => console.log("error", error));
     // return () => {
     //   cleanup;
     // };
@@ -48,11 +65,9 @@ const Home: NextPage = () => {
       </section>
       {/* cards section */}
       <section className="container overflow-x-scroll space-x-6 flex text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
-        <CreditCard />
-        <CreditCard />
-        <CreditCard />
-        <CreditCard />
-        <CreditCard />
+        {Cards.map((card, ind) => (
+          <CreditCard key={ind} {...card} />
+        ))}
       </section>
       <section className="container text-gray-400 mx-auto px-4 md:px-8 pt-20 pb-2 justify-between flex items-center">
         <p className="text-xs font-medium tracking-widest leading-snug text-center text-gray-400 uppercase">

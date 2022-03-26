@@ -5,10 +5,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const Register = () => {
+const Login = () => {
   const router = useRouter();
+
   const [data, setdata] = useState({
-    username: null,
     email: null,
     password: null
   });
@@ -16,7 +16,7 @@ const Register = () => {
   const register = (e) => {
     e.preventDefault();
     // console.log(data);
-    fetch("https://bread-backend.herokuapp.com/user/register", {
+    fetch("https://bread-backend.herokuapp.com/user/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
@@ -39,26 +39,9 @@ const Register = () => {
       </div>
 
       <p className="py-6 text-4xl font-semibold tracking-wide leading-10 text-white text-center">
-        Join Now, Save Later
+        Welcome Back
       </p>
       <form className="flex items-center flex-col space-y-6 text-white">
-        <div className="flex flex-col flex align-start max-w-sm space-y-2">
-          <label
-            htmlFor="username"
-            className="text-xs font-medium tracking-widest leading-snug text-gray-400 uppercase"
-          >
-            username
-          </label>
-          <input
-            value={data.username}
-            onChange={(e) => setdata({ ...data, username: e.target.value })}
-            required
-            type="text"
-            placeholder="Username"
-            name="username"
-            className="textinline-flex items-center justify-center w-96 px-10 py-4 bg-gray-600 border-2 rounded-full border-white border-opacity-0"
-          />
-        </div>
         <div className="flex flex-col flex align-start max-w-sm space-y-2">
           <label
             htmlFor="email"
@@ -76,6 +59,7 @@ const Register = () => {
             className="textinline-flex items-center justify-center w-96 px-10 py-4 bg-gray-600 border-2 rounded-full border-white border-opacity-0"
           />
         </div>
+
         <div className="flex flex-col flex align-start max-w-sm space-y-2">
           <label
             htmlFor="password"
@@ -94,9 +78,9 @@ const Register = () => {
           />
         </div>
         <p className="text-base font-light tracking-wide leading-relaxed text-gray-400">
-          already joined ?{" "}
-          <Link href="/login">
-            <span className="text-blue-400 cursor-pointer">login here</span>
+          new here ?{" "}
+          <Link href="/register">
+            <span className="text-blue-400 cursor-pointer">register now</span>
           </Link>
         </p>
         <button
@@ -104,11 +88,11 @@ const Register = () => {
           className="inline-flex items-center justify-center px-10 py-4  hover:bg-blue-900 hover:bg-none bg-gradient-to-b from-indigo-700 to-blue-900 shadow hover:shadow-inner rounded-full"
         >
           <p className="text-base font-medium tracking-wide leading-snug text-white">
-            Register Now
+            Login
           </p>
         </button>
       </form>
     </div>
   );
 };
-export default Register;
+export default Login;
