@@ -1,6 +1,6 @@
 import React from "react";
 import NextImage from "next/image";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/logo.svg";
 
 const Navbar = () => {
   return (

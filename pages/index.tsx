@@ -2,14 +2,24 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import CreditCard from "../components/CreditCard";
-
+import Coupon from "../components/Coupon";
+import { useEffect } from "react";
 const Home: NextPage = () => {
+  const [Cards, setCards] = useState([]);
+
+  useEffect(() => {
+    fetch();
+    // return () => {
+    //   cleanup;
+    // };
+  }, []);
   return (
     <>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navbar />
       <section className="container text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
         <p className="text-xs font-medium tracking-widest leading-snug text-center text-gray-400 uppercase">
           SELECT CARD
@@ -37,8 +47,20 @@ const Home: NextPage = () => {
         </div>
       </section>
       {/* cards section */}
-      <section className="container text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
+      <section className="container overflow-x-scroll space-x-6 flex text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
         <CreditCard />
+        <CreditCard />
+        <CreditCard />
+        <CreditCard />
+        <CreditCard />
+      </section>
+      <section className="container text-gray-400 mx-auto px-4 md:px-8 pt-20 pb-2 justify-between flex items-center">
+        <p className="text-xs font-medium tracking-widest leading-snug text-center text-gray-400 uppercase">
+          Recommended Offers
+        </p>
+      </section>
+      <section className="container overflow-x-scroll space-x-6 flex text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
+        <Coupon />
       </section>
     </>
   );
