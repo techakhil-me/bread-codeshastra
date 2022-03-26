@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background: #212426;
+}
+
+.link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.link::after {
+  position: absolute;
+  bottom: 0;
+  content: "";
+  width: 100%;
+  height: 1px;
+  /* background: #161616; */
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    #ffffff 50.73%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-110%);
+  transition: 300ms ease-in-out;
+}
+.link:hover::after {
+  transform: translateX(0);
+}
