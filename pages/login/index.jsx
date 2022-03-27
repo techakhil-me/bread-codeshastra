@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault();
     // console.log(data);
     fetch("https://bread-backend.herokuapp.com/user/signin", {
-      method: "GET",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     })
