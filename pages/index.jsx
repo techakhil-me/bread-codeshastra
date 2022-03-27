@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import CreditCard from "../components/CreditCard";
@@ -7,9 +6,8 @@ import Navbar from "../components/Navbar";
 import AddCard from "../components/AddCard";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { json } from "stream/consumers";
 
-const Home: NextPage = () => {
+const Home = () => {
   const router = useRouter();
   const [Cards, setCards] = useState([]);
   const [Offers, setOffers] = useState([]);
@@ -22,15 +20,12 @@ const Home: NextPage = () => {
   }, [openAdd]);
 
   useEffect(() => {
-    if (Active){
+    if (Active) {
       // filter
-    }else{
-      setCards([...Total])
+    } else {
+      setCards([...Total]);
     }
   }, [Active]);
-
-
-
 
   useEffect(() => {
     if (!localStorage.getItem("userId")) {
@@ -98,7 +93,12 @@ const Home: NextPage = () => {
       {/* cards section */}
       <section className="container overflow-x-scroll space-x-6 flex text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2  flex items-center">
         {Cards.map((card, ind) => (
-          <CreditCard key={ind} setActive={setActive} Active={Active} {...card} />
+          <CreditCard
+            key={ind}
+            setActive={setActive}
+            Active={Active}
+            {...card}
+          />
         ))}
       </section>
       <section className="container text-gray-400 mx-auto px-4 md:px-8 pt-20 pb-2 justify-between flex items-center">
