@@ -5,7 +5,7 @@ const AddCard = ({ openAdd, setopenAdd }) => {
   const [data, setdata] = useState({
     bank_name: 'Axis',
     provider_name: 'Master',
-    card_number: '465486464684',
+    card_no: '465486464684',
     exp_date: '05/23',
     user_id: null,
   })
