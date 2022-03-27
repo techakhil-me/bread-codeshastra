@@ -19,8 +19,8 @@ const Navbar = () => {
         >
           Browse
         </a>
-        <button class="cursor-pointer inline-flex space-x-2.5 items-center justify-center px-2.5 py-2 bg-gradient-to-r from-black to-black shadow border rounded-full border-black border-opacity-10">
-          <div class="inline-flex flex-col items-start justify-start p-1.5 bg-gradient-to-tl from-indigo-700 to-blue-900 rounded-full">
+        <button className="cursor-pointer inline-flex space-x-2.5 items-center justify-center px-2.5 py-2 bg-gradient-to-r from-black to-black shadow border rounded-full border-black border-opacity-10">
+          <div className="inline-flex flex-col items-start justify-start p-1.5 bg-gradient-to-tl from-indigo-700 to-blue-900 rounded-full">
             <svg
               width="11"
               height="12"
@@ -54,7 +54,7 @@ const Navbar = () => {
               </defs>
             </svg>
           </div>
-          <p class="text-base font-medium tracking-wide leading-none text-gray-300">
+          <p className="text-base font-medium tracking-wide leading-none text-gray-300">
             Upload
           </p>
         </button>

@@ -1,18 +1,21 @@
 import React from "react";
 
-const Coupon = () => {
+const Coupon = (props) => {
   return (
-    <div className="flex justify-between shrink-0 sm:w-[760px] sm:h-64 h-44 bg-red-200 w-full overflow-hidden rounded-lg p-4 md:p-6">
+    <div
+      style={{ background: props.color }}
+      className="flex justify-between shrink-0 sm:w-[760px] sm:h-52 h-44 bg-red-200 w-full overflow-hidden rounded-lg p-4 md:p-6"
+    >
       <div className="flex flex-col justify-between">
         <div class="inline-flex flex-col space-y-2 items-start justify-start">
           <p class="text-4xl font-bold tracking-wide leading-10 text-gray-800">
-            20% OFF
+            {props?.coupon_offer} OFF
           </p>
           <p class="w-full md:text-xl font-medium tracking-wide leading-snug text-gray-600 max-w-sm">
-            Get men's clothing sale at up to 30% off on selected products
+            {props?.coupon_description}
           </p>
         </div>
-        <div class="inline-flex space-x-2.5 items-center max-w-fit justify-start px-6 py-2 bg-black rounded-full">
+        {/* <div class="inline-flex space-x-2.5 items-center max-w-fit justify-start px-6 py-2 bg-black rounded-full">
           <p class="text-xl font-medium tracking-wide leading-snug text-white">
             AIRTELPB300
           </p>
@@ -50,16 +53,18 @@ const Coupon = () => {
               </clipPath>
             </defs>
           </svg>
-        </div>
+        </div> */}
       </div>
-      <div className="w-64 h-full flex flex-col items-center justify-between pl-4 border-0 border-l-2 border-dashed border-black">
-        <img
-          src="https://cdn.discordapp.com/attachments/955898608589344778/957342483589763163/unknown.png"
-          alt=""
-        />
+      <div className="coupon relative overflow-hidden w-64 h-full flex flex-col items-center justify-between pl-4 border-0 border-l-2 border-dashed border-black">
+        <img src={props?.coupon_image} alt="" className="h-16" />
         <p class="text-xs font-medium tracking-widest leading-snug text-center text-gray-800 uppercase">
-          Untill 20/04/2022
+          Untill {props?.coupon_end.slice(0, 10)}
         </p>
+        <div className="cursor-pointer absolute transform curson-pointer translate-x-full transition duration-300 ease-in-out w-full h-full flex flex-col backdrop-blur-xl bg-gray-200/50 rounded-lg items-center justify-center">
+          <p class="text-4xl font-semibold tracking-wide leading-10 text-white">
+            SAVE
+          </p>
+        </div>
       </div>
     </div>
   );

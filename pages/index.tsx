@@ -11,6 +11,7 @@ import { json } from "stream/consumers";
 const Home: NextPage = () => {
   const router = useRouter();
   const [Cards, setCards] = useState([]);
+  const [Offers, setOffers] = useState([]);
   useEffect(() => {
     if (!localStorage.getItem("userId")) {
       router.push("/login");
@@ -23,7 +24,13 @@ const Home: NextPage = () => {
       .then((response) => response.json())
       .then((result) => {
         setCards(result.data);
-        // console.log(result.data);
+      })
+      .catch((error) => console.log("error", error));
+
+    fetch("https://bread-backend.herokuapp.com/offer/getOffer")
+      .then((response) => response.json())
+      .then((result) => {
+        setOffers(result.coupon);
       })
       .catch((error) => console.log("error", error));
     // return () => {
@@ -41,8 +48,8 @@ const Home: NextPage = () => {
         <p className="text-xs font-medium tracking-widest leading-snug text-center text-gray-400 uppercase">
           SELECT CARD
         </p>
-        <div className="inline-flex space-x-2.5 items-center justify-center h-12 px-2.5 py-1 bg-gradient-to-r from-black to-black shadow border-2 rounded-full border-black border-opacity-10">
-          <div className="inline-flex flex-col items-start justify-start p-1.5 bg-gray-800 shadow-inner rounded-full">
+        <div className="cursor-pointer inline-flex space-x-2.5 items-center justify-center h-12 px-2.5 py-1 bg-gradient-to-r from-black to-black shadow border-2 rounded-full border-black border-opacity-10">
+          <div className="  inline-flex flex-col items-start justify-start p-1.5 bg-gray-800 shadow-inner rounded-full">
             <svg
               width="12"
               height="12"
@@ -64,7 +71,7 @@ const Home: NextPage = () => {
         </div>
       </section>
       {/* cards section */}
-      <section className="container overflow-x-scroll space-x-6 flex text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
+      <section className="container overflow-x-scroll overflow-y-hidden space-x-6 flex text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2  flex items-center">
         {Cards.map((card, ind) => (
           <CreditCard key={ind} {...card} />
         ))}
@@ -75,7 +82,27 @@ const Home: NextPage = () => {
         </p>
       </section>
       <section className="container overflow-x-scroll space-x-6 flex text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
-        <Coupon />
+        {Offers.map((offer, ind) => (
+          <>
+            {offer.type === "Recommended " ? (
+              <Coupon key={ind} {...offer} />
+            ) : null}
+          </>
+        ))}
+      </section>
+      <section className="container text-gray-400 mx-auto px-4 md:px-8 pt-20 pb-2 justify-between flex items-center">
+        <p className="text-xs font-medium tracking-widest leading-snug text-center text-gray-400 uppercase">
+          Tourism
+        </p>
+      </section>
+      <section className="container overflow-x-scroll space-x-6 flex text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
+        {Offers.map((offer, ind) => (
+          <>
+            {offer.type === "tourism" ? (
+              <Coupon key={ind} color="#7FC0B1" {...offer} />
+            ) : null}
+          </>
+        ))}
       </section>
     </>
   );
