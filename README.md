@@ -1,3 +1,28 @@
+
+
+
+# Bred 
+
+## offers and discounts for your daily bread
+
+![Contributors](https://img.shields.io/github/contributors/techakhil-me/mega-audio)
+![Forks](https://img.shields.io/github/forks/techakhil-me/mega-audio)
+![Stars](https://img.shields.io/github/stars/techakhil-me/mega-audio)
+![Licence](https://img.shields.io/github/license/techakhil-me/mega-audio)
+![Issues](https://img.shields.io/github/issues/techakhil-me/mega-audio)
+
+![SiteImage](https://cdn.discordapp.com/attachments/955898608589344778/957514087191969832/unknown.png)
+
+
+## How we built it
+
+We built this website using Nextjs, Tailwind css and backend supported by Nodejs and PostgreSQL.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
 # Next.js + Tailwind CSS Example
 
 This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
