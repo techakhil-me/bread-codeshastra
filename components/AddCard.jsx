@@ -77,7 +77,7 @@ const AddCard = ({ openAdd, setopenAdd }) => {
           <input
             maxLength="17"
             value={data.card_number}
-            onChange={(e) => setdata({ ...data, card_number: e.target.value })}
+            onChange={(e) => setdata({ ...data, card_no: e.target.value })}
             required
             type="text"
             placeholder="Enter card number"
