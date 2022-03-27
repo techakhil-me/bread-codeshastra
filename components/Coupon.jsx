@@ -1,35 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
 
 const Coupon = (props) => {
-  const [data, setdata] = useState({ ...props });
+  const [data, setdata] = useState({ ...props })
   useEffect(() => {
-    data.userId = localStorage.getItem("userId");
-    setdata({ ...data });
-  }, []);
+    data.userId = localStorage.getItem('userId')
+    setdata({ ...data })
+  }, [])
   const save = () => {
-    fetch("https://bread-backend.herokuapp.com/offer/addOffer", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+    fetch('https://nathuramgodse.me/offer/addoffer', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("saved");
+        console.log('saved')
       })
-      .catch((error) => console.log("error", error));
-  };
+      .catch((error) => console.log('error', error))
+  }
 
   return (
     <div
       style={{ background: props.color }}
-      className="flex justify-between shrink-0 sm:w-[760px] sm:h-52 h-44 bg-red-200 w-full overflow-hidden rounded-lg p-4 md:p-6"
+      className="flex h-44 w-full shrink-0 justify-between overflow-hidden rounded-lg bg-red-200 p-4 sm:h-52 sm:w-[760px] md:p-6"
     >
       <div className="flex flex-col justify-between">
-        <div class="inline-flex flex-col space-y-2 items-start justify-start">
-          <p class="text-4xl font-bold tracking-wide leading-10 text-gray-800">
+        <div class="inline-flex flex-col items-start justify-start space-y-2">
+          <p class="text-4xl font-bold leading-10 tracking-wide text-gray-800">
             {props?.coupon_offer} OFF
           </p>
-          <p class="w-full md:text-xl font-medium tracking-wide leading-snug text-gray-600 max-w-sm">
+          <p class="w-full max-w-sm font-medium leading-snug tracking-wide text-gray-600 md:text-xl">
             {props?.coupon_description}
           </p>
         </div>
@@ -73,22 +73,22 @@ const Coupon = (props) => {
           </svg>
         </div> */}
       </div>
-      <div className="coupon relative overflow-hidden w-64 h-full flex flex-col items-center justify-between pl-4 border-0 border-l-2 border-dashed border-black">
+      <div className="coupon relative flex h-full w-64 flex-col items-center justify-between overflow-hidden border-0 border-l-2 border-dashed border-black pl-4">
         <img src={props?.coupon_image} alt="" className="h-20" />
-        <p class="text-xs font-medium tracking-widest leading-snug text-center text-gray-800 uppercase">
+        <p class="text-center text-xs font-medium uppercase leading-snug tracking-widest text-gray-800">
           Untill {props?.coupon_end.slice(0, 10)}
         </p>
         <div
           onClick={save}
-          className="cursor-pointer absolute transform curson-pointer translate-x-full transition duration-300 ease-in-out w-full h-full flex flex-col backdrop-blur-xl bg-gray-200/50 rounded-lg items-center justify-center"
+          className="curson-pointer absolute flex h-full w-full translate-x-full transform cursor-pointer flex-col items-center justify-center rounded-lg bg-gray-200/50 backdrop-blur-xl transition duration-300 ease-in-out"
         >
-          <p class="text-4xl font-semibold tracking-wide leading-10 text-white">
+          <p class="text-4xl font-semibold leading-10 tracking-wide text-white">
             SAVE
           </p>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Coupon;
+export default Coupon

@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from "react";
-import CreditCard from "./CreditCard";
+import React, { useState, useEffect } from 'react'
+import CreditCard from './CreditCard'
 
 const AddCard = ({ openAdd, setopenAdd }) => {
   const [data, setdata] = useState({
-    bank_name: "Axis",
-    provider_name: "Master",
-    card_number: "465486464684",
-    exp_date: "05/23",
-    user_id: null
-  });
+    bank_name: 'Axis',
+    provider_name: 'Master',
+    card_number: '465486464684',
+    exp_date: '05/23',
+    user_id: null,
+  })
   useEffect(() => {
-    data.user_id = localStorage.getItem("userId");
-    setdata({ ...data });
-  }, []);
+    data.user_id = localStorage.getItem('userId')
+    setdata({ ...data })
+  }, [])
   const addCard = () => {
-    fetch("https://bread-backend.herokuapp.com/card/addcard", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+    fetch('https://nathuramgodse.me/card/addcard', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((result) => {
-        setopenAdd(false);
+        setopenAdd(false)
       })
-      .catch((error) => console.log("error", error));
-  };
+      .catch((error) => console.log('error', error))
+  }
   return (
     <div
-      className="md:fixed min-h-screen absolute  h-[1000px] w-screen md:h-screen z-10 top-0 left-0 flex  items-center justify-center flex-col-reverse md:flex-row  space-y-10 gap-16"
-      style={{ background: "#212426" }}
+      className="absolute top-0 left-0  z-10 flex h-[1000px] min-h-screen w-screen flex-col-reverse items-center  justify-center gap-16 space-y-10 md:fixed  md:h-screen md:flex-row"
+      style={{ background: '#212426' }}
     >
-      <div className="flex flex-col space-y-8 max-w-sm text-white">
-        <div className="flex flex-col flex align-start max-w-sm space-y-2">
+      <div className="flex max-w-sm flex-col space-y-8 text-white">
+        <div className="align-start flex flex max-w-sm flex-col space-y-2">
           <label
             htmlFor="bank_name"
-            className="text-xs font-medium tracking-widest leading-snug text-gray-400 uppercase"
+            className="text-xs font-medium uppercase leading-snug tracking-widest text-gray-400"
           >
             bank name
           </label>
@@ -45,13 +45,13 @@ const AddCard = ({ openAdd, setopenAdd }) => {
             type="text"
             placeholder="Enter bank name"
             name="bank_name"
-            className="textinline-flex items-center justify-center w-96 px-10 py-4 bg-gray-600 border-2 rounded-full border-white border-opacity-0"
+            className="textinline-flex w-96 items-center justify-center rounded-full border-2 border-white border-opacity-0 bg-gray-600 px-10 py-4"
           />
         </div>
-        <div className="flex flex-col flex align-start max-w-sm space-y-2">
+        <div className="align-start flex flex max-w-sm flex-col space-y-2">
           <label
             htmlFor="provider_name"
-            className="text-xs font-medium tracking-widest leading-snug text-gray-400 uppercase"
+            className="text-xs font-medium uppercase leading-snug tracking-widest text-gray-400"
           >
             provider name
           </label>
@@ -64,13 +64,13 @@ const AddCard = ({ openAdd, setopenAdd }) => {
             type="text"
             placeholder="Enter provider name"
             name="provider_name"
-            className="textinline-flex items-center justify-center w-96 px-10 py-4 bg-gray-600 border-2 rounded-full border-white border-opacity-0"
+            className="textinline-flex w-96 items-center justify-center rounded-full border-2 border-white border-opacity-0 bg-gray-600 px-10 py-4"
           />
         </div>
-        <div className="flex flex-col flex align-start max-w-sm space-y-2">
+        <div className="align-start flex flex max-w-sm flex-col space-y-2">
           <label
             htmlFor="card_number"
-            className="text-xs font-medium tracking-widest leading-snug text-gray-400 uppercase"
+            className="text-xs font-medium uppercase leading-snug tracking-widest text-gray-400"
           >
             card number
           </label>
@@ -82,21 +82,21 @@ const AddCard = ({ openAdd, setopenAdd }) => {
             type="text"
             placeholder="Enter card number"
             name="card_number"
-            className="textinline-flex items-center justify-center w-96 px-10 py-4 bg-gray-600 border-2 rounded-full border-white border-opacity-0"
+            className="textinline-flex w-96 items-center justify-center rounded-full border-2 border-white border-opacity-0 bg-gray-600 px-10 py-4"
           />
         </div>
-        <div className="flex gap-10 items-center justify-center">
+        <div className="flex items-center justify-center gap-10">
           <span
             onClick={() => setopenAdd(false)}
-            className="text-blue-400 cursor-pointer"
+            className="cursor-pointer text-blue-400"
           >
             Cancel
           </span>
           <button
             onClick={addCard}
-            className="inline-flex items-center justify-center px-10 py-4  hover:bg-blue-900 hover:bg-none bg-gradient-to-b from-indigo-700 to-blue-900 shadow hover:shadow-inner rounded-full"
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-b  from-indigo-700 to-blue-900 px-10 py-4 shadow hover:bg-blue-900 hover:bg-none hover:shadow-inner"
           >
-            <p className="text-base font-medium tracking-wide leading-snug text-white">
+            <p className="text-base font-medium leading-snug tracking-wide text-white">
               Add Card
             </p>
           </button>
@@ -104,7 +104,7 @@ const AddCard = ({ openAdd, setopenAdd }) => {
       </div>
       {data ? <CreditCard {...data} /> : null}
     </div>
-  );
-};
+  )
+}
 
-export default AddCard;
+export default AddCard

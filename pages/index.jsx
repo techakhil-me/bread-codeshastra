@@ -1,57 +1,57 @@
-import Head from "next/head";
-import Image from "next/image";
-import CreditCard from "../components/CreditCard";
-import Coupon from "../components/Coupon";
-import Navbar from "../components/Navbar";
-import AddCard from "../components/AddCard";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import Head from 'next/head'
+import Image from 'next/image'
+import CreditCard from '../components/CreditCard'
+import Coupon from '../components/Coupon'
+import Navbar from '../components/Navbar'
+import AddCard from '../components/AddCard'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const Home = () => {
-  const router = useRouter();
-  const [Cards, setCards] = useState([]);
-  const [Offers, setOffers] = useState([]);
-  const [Total, setTotal] = useState([]);
-  const [openAdd, setopenAdd] = useState(false);
-  const [Active, setActive] = useState(false);
+  const router = useRouter()
+  const [Cards, setCards] = useState([])
+  const [Offers, setOffers] = useState([])
+  const [Total, setTotal] = useState([])
+  const [openAdd, setopenAdd] = useState(false)
+  const [Active, setActive] = useState(false)
 
   useEffect(() => {
-    setCards([...Cards]);
-  }, [openAdd]);
+    setCards([...Cards])
+  }, [openAdd])
 
   useEffect(() => {
     if (Active) {
       // filter
     } else {
-      setCards([...Total]);
+      setCards([...Total])
     }
-  }, [Active]);
+  }, [Active])
 
   useEffect(() => {
-    if (!localStorage.getItem("userId")) {
-      router.push("/login");
+    if (!localStorage.getItem('userId')) {
+      router.push('/login')
     }
-    fetch("https://bread-backend.herokuapp.com/card/getcards", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId: localStorage.getItem("userId") })
+    fetch('https://nathuramgodse.me/card/getcards', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId: localStorage.getItem('userId') }),
     })
       .then((response) => response.json())
       .then((result) => {
-        setCards(result.data);
+        setCards(result.data)
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error))
 
-    fetch("https://bread-backend.herokuapp.com/offer/getOffer")
+    fetch('https://nathuramgodse.me/offer/getoffer')
       .then((response) => response.json())
       .then((result) => {
-        setOffers(result.coupon);
+        setOffers(result.coupon)
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error))
     // return () => {
     //   cleanup;
     // };
-  }, []);
+  }, [])
 
   return (
     <>
@@ -61,15 +61,15 @@ const Home = () => {
       </Head>
       <Navbar />
       {openAdd ? <AddCard setopenAdd={setopenAdd} openAdd={openAdd} /> : null}
-      <section className="container text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
-        <p className="text-xs font-medium tracking-widest leading-snug text-center text-gray-400 uppercase">
+      <section className="container mx-auto flex items-center justify-between px-4 pt-4 pb-2 text-gray-400 md:px-8 md:pt-8">
+        <p className="text-center text-xs font-medium uppercase leading-snug tracking-widest text-gray-400">
           SELECT CARD
         </p>
         <div
           onClick={() => setopenAdd(true)}
-          className="cursor-pointer inline-flex space-x-2.5 items-center justify-center h-12 px-2.5 py-1 bg-gradient-to-r from-black to-black shadow border-2 rounded-full border-black border-opacity-10"
+          className="inline-flex h-12 cursor-pointer items-center justify-center space-x-2.5 rounded-full border-2 border-black border-opacity-10 bg-gradient-to-r from-black to-black px-2.5 py-1 shadow"
         >
-          <div className="  inline-flex flex-col items-start justify-start p-1.5 bg-gray-800 shadow-inner rounded-full">
+          <div className="  inline-flex flex-col items-start justify-start rounded-full bg-gray-800 p-1.5 shadow-inner">
             <svg
               width="12"
               height="12"
@@ -85,13 +85,13 @@ const Home = () => {
               />
             </svg>
           </div>
-          <p className="text-base font-medium tracking-wide leading-snug text-white">
+          <p className="text-base font-medium leading-snug tracking-wide text-white">
             Add Card
           </p>
         </div>
       </section>
       {/* cards section */}
-      <section className="container overflow-x-scroll space-x-6 flex text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2  flex items-center">
+      <section className="container mx-auto flex flex items-center space-x-6 overflow-x-scroll px-4 pt-4 pb-2 text-gray-400  md:px-8 md:pt-8">
         {Cards.map((card, ind) => (
           <CreditCard
             key={ind}
@@ -101,43 +101,43 @@ const Home = () => {
           />
         ))}
       </section>
-      <section className="container text-gray-400 mx-auto px-4 md:px-8 pt-20 pb-2 justify-between flex items-center">
-        <p className="text-xs font-medium tracking-widest leading-snug text-center text-gray-400 uppercase">
+      <section className="container mx-auto flex items-center justify-between px-4 pt-20 pb-2 text-gray-400 md:px-8">
+        <p className="text-center text-xs font-medium uppercase leading-snug tracking-widest text-gray-400">
           Recommended Offers
         </p>
       </section>
-      <section className="container overflow-x-scroll space-x-6 flex text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
+      <section className="container mx-auto flex flex items-center justify-between space-x-6 overflow-x-scroll px-4 pt-4 pb-2 text-gray-400 md:px-8 md:pt-8">
         {Offers.map((offer, ind) => (
           <>
-            {offer.type === "Recommended " ? (
+            {offer.type === 'Recommended ' ? (
               <Coupon key={ind} {...offer} />
             ) : null}
           </>
         ))}
       </section>
-      <section className="container text-gray-400 mx-auto px-4 md:px-8 pt-20 pb-2 justify-between flex items-center">
-        <p className="text-xs font-medium tracking-widest leading-snug text-center text-gray-400 uppercase">
+      <section className="container mx-auto flex items-center justify-between px-4 pt-20 pb-2 text-gray-400 md:px-8">
+        <p className="text-center text-xs font-medium uppercase leading-snug tracking-widest text-gray-400">
           Tourism
         </p>
       </section>
-      <section className="container overflow-x-scroll space-x-6 flex text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
+      <section className="container mx-auto flex flex items-center justify-between space-x-6 overflow-x-scroll px-4 pt-4 pb-2 text-gray-400 md:px-8 md:pt-8">
         {Offers.map((offer, ind) => (
           <>
-            {offer.type === "tourism" ? (
+            {offer.type === 'tourism' ? (
               <Coupon key={ind} color="#7FC0B1" {...offer} />
             ) : null}
           </>
         ))}
       </section>
-      <section className="container text-gray-400 mx-auto px-4 md:px-8 pt-20 pb-2 justify-between flex items-center">
-        <p className="text-xs font-medium tracking-widest leading-snug text-center text-gray-400 uppercase">
+      <section className="container mx-auto flex items-center justify-between px-4 pt-20 pb-2 text-gray-400 md:px-8">
+        <p className="text-center text-xs font-medium uppercase leading-snug tracking-widest text-gray-400">
           Food
         </p>
       </section>
-      <section className="container overflow-x-scroll space-x-6 flex text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
+      <section className="container mx-auto flex flex items-center justify-between space-x-6 overflow-x-scroll px-4 pt-4 pb-2 text-gray-400 md:px-8 md:pt-8">
         {Offers.map((offer, ind) => (
           <>
-            {offer.type === "food" ? (
+            {offer.type === 'food' ? (
               <Coupon key={ind} color="#EFC76F" {...offer} />
             ) : null}
           </>
@@ -145,7 +145,7 @@ const Home = () => {
       </section>
       <section className="pb-48"></section>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

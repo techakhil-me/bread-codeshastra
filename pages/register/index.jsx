@@ -1,51 +1,51 @@
-import React from "react";
-import NextImage from "next/image";
-import Logo from "../../assets/logo.svg";
-import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import React from 'react'
+import NextImage from 'next/image'
+import Logo from '../../assets/logo.svg'
+import { useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const Register = () => {
-  const router = useRouter();
+  const router = useRouter()
   const [data, setdata] = useState({
     username: null,
     email: null,
-    password: null
-  });
+    password: null,
+  })
 
   const register = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     // console.log(data);
-    fetch("https://bread-backend.herokuapp.com/user/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+    fetch('https://nathuramgodse.me/user/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((result) => {
-        localStorage.setItem("userId", result.user.id);
-        localStorage.setItem("username", result.user.username);
-        router.push("/");
+        localStorage.setItem('userId', result.user.id)
+        localStorage.setItem('username', result.user.username)
+        router.push('/')
       })
-      .catch((error) => console.log("error", error));
-  };
+      .catch((error) => console.log('error', error))
+  }
   return (
-    <div className="container min-h-screen justify-center mx-auto p-4 flex flex-col space-y-4">
+    <div className="container mx-auto flex min-h-screen flex-col justify-center space-y-4 p-4">
       <div className="flex flex-col items-center space-y-4">
         <NextImage src={Logo.src} height={244} width={162} />
-        <p className="text-lg font-semibold tracking-wide leading-relaxed text-gray-400">
+        <p className="text-lg font-semibold leading-relaxed tracking-wide text-gray-400">
           offers and discounts for your daily bread
         </p>
       </div>
 
-      <p className="py-6 text-4xl font-semibold tracking-wide leading-10 text-white text-center">
+      <p className="py-6 text-center text-4xl font-semibold leading-10 tracking-wide text-white">
         Join Now, Save Later
       </p>
-      <form className="flex items-center flex-col space-y-6 text-white">
-        <div className="flex flex-col flex align-start max-w-sm space-y-2">
+      <form className="flex flex-col items-center space-y-6 text-white">
+        <div className="align-start flex flex max-w-sm flex-col space-y-2">
           <label
             htmlFor="username"
-            className="text-xs font-medium tracking-widest leading-snug text-gray-400 uppercase"
+            className="text-xs font-medium uppercase leading-snug tracking-widest text-gray-400"
           >
             username
           </label>
@@ -56,13 +56,13 @@ const Register = () => {
             type="text"
             placeholder="Username"
             name="username"
-            className="textinline-flex items-center justify-center w-96 px-10 py-4 bg-gray-600 border-2 rounded-full border-white border-opacity-0"
+            className="textinline-flex w-96 items-center justify-center rounded-full border-2 border-white border-opacity-0 bg-gray-600 px-10 py-4"
           />
         </div>
-        <div className="flex flex-col flex align-start max-w-sm space-y-2">
+        <div className="align-start flex flex max-w-sm flex-col space-y-2">
           <label
             htmlFor="email"
-            className="text-xs font-medium tracking-widest leading-snug text-gray-400 uppercase"
+            className="text-xs font-medium uppercase leading-snug tracking-widest text-gray-400"
           >
             email
           </label>
@@ -73,13 +73,13 @@ const Register = () => {
             type="email"
             placeholder="Email"
             name="email"
-            className="textinline-flex items-center justify-center w-96 px-10 py-4 bg-gray-600 border-2 rounded-full border-white border-opacity-0"
+            className="textinline-flex w-96 items-center justify-center rounded-full border-2 border-white border-opacity-0 bg-gray-600 px-10 py-4"
           />
         </div>
-        <div className="flex flex-col flex align-start max-w-sm space-y-2">
+        <div className="align-start flex flex max-w-sm flex-col space-y-2">
           <label
             htmlFor="password"
-            className="text-xs font-medium tracking-widest leading-snug text-gray-400 uppercase"
+            className="text-xs font-medium uppercase leading-snug tracking-widest text-gray-400"
           >
             password
           </label>
@@ -90,25 +90,25 @@ const Register = () => {
             type="password"
             placeholder="Password"
             name="password"
-            className="textinline-flex items-center justify-center w-96 px-10 py-4 bg-gray-600 border-2 rounded-full border-white border-opacity-0"
+            className="textinline-flex w-96 items-center justify-center rounded-full border-2 border-white border-opacity-0 bg-gray-600 px-10 py-4"
           />
         </div>
-        <p className="text-base font-light tracking-wide leading-relaxed text-gray-400">
-          already joined ?{" "}
+        <p className="text-base font-light leading-relaxed tracking-wide text-gray-400">
+          already joined ?{' '}
           <Link href="/login">
-            <span className="text-blue-400 cursor-pointer">login here</span>
+            <span className="cursor-pointer text-blue-400">login here</span>
           </Link>
         </p>
         <button
           onClick={register}
-          className="inline-flex items-center justify-center px-10 py-4  hover:bg-blue-900 hover:bg-none bg-gradient-to-b from-indigo-700 to-blue-900 shadow hover:shadow-inner rounded-full"
+          className="inline-flex items-center justify-center rounded-full bg-gradient-to-b  from-indigo-700 to-blue-900 px-10 py-4 shadow hover:bg-blue-900 hover:bg-none hover:shadow-inner"
         >
-          <p className="text-base font-medium tracking-wide leading-snug text-white">
+          <p className="text-base font-medium leading-snug tracking-wide text-white">
             Register Now
           </p>
         </button>
       </form>
     </div>
-  );
-};
-export default Register;
+  )
+}
+export default Register
