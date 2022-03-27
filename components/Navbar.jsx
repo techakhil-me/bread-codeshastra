@@ -1,11 +1,19 @@
 import React from "react";
 import NextImage from "next/image";
 import Logo from "../assets/logo.svg";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
     <nav className="container text-gray-400 mx-auto px-4 md:px-8 pt-4 md:pt-8 pb-2 justify-between flex items-center">
-      <NextImage src={Logo.src} height={60} width={40} />
+      <Link href="/">
+        <NextImage
+          className="cursor-pointer"
+          src={Logo.src}
+          height={60}
+          width={40}
+        />
+      </Link>
       <div className="flex space-x-6 items-center">
         <a
           href="/"
@@ -13,12 +21,11 @@ const Navbar = () => {
         >
           Top Offers
         </a>
-        <a
-          href="/"
-          className="link py-2 cursor-pointer hover:text-white transition ease-in-out duration-250 text-base font-medium tracking-wide leading-none"
-        >
-          Browse
-        </a>
+        <Link href="/saved">
+          <a className="link py-2 cursor-pointer hover:text-white transition ease-in-out duration-250 text-base font-medium tracking-wide leading-none">
+            Saved
+          </a>
+        </Link>
         <button className="cursor-pointer inline-flex space-x-2.5 items-center justify-center px-2.5 py-2 bg-gradient-to-r from-black to-black shadow border rounded-full border-black border-opacity-10">
           <div className="inline-flex flex-col items-start justify-start p-1.5 bg-gradient-to-tl from-indigo-700 to-blue-900 rounded-full">
             <svg
@@ -58,50 +65,53 @@ const Navbar = () => {
             Upload
           </p>
         </button>
-        <svg
-          className="cursor-pointer hover:text-white transition ease-in-out duration-250"
-          width="24"
-          height="27"
-          viewBox="0 0 24 27"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M18 11C18 9.4087 17.3679 7.88258 16.2426 6.75736C15.1174 5.63214 13.5913 5 12 5C10.4087 5 8.88258 5.63214 7.75736 6.75736C6.63214 7.88258 6 9.4087 6 11C6 18 3 20 3 20H21C21 20 18 18 18 11Z"
-            stroke="#8C8E8F"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M13.73 24C13.5542 24.3031 13.3019 24.5547 12.9982 24.7295C12.6946 24.9044 12.3504 24.9965 12 24.9965C11.6496 24.9965 11.3054 24.9044 11.0018 24.7295C10.6982 24.5547 10.4458 24.3031 10.27 24"
-            stroke="#8C8E8F"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <circle
-            className="animate-pulse"
-            cx="16"
-            cy="4.5"
-            r="3.5"
-            fill="url(#paint0_linear_415_1356)"
-            stroke="#212426"
-          />
-          <defs>
-            <linearGradient
-              id="paint0_linear_415_1356"
-              x1="16"
-              y1="0.5"
-              x2="16"
-              y2="8.5"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#D9896A" />
-              <stop offset="1" stop-color="#945439" />
-            </linearGradient>
-          </defs>
-        </svg>
+        <div className="relative">
+          <div className="absolute right-0 top-full w-72 h-max-h-96 p-4"></div>
+          <svg
+            className="cursor-pointer hover:text-white transition ease-in-out duration-250"
+            width="24"
+            height="27"
+            viewBox="0 0 24 27"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 11C18 9.4087 17.3679 7.88258 16.2426 6.75736C15.1174 5.63214 13.5913 5 12 5C10.4087 5 8.88258 5.63214 7.75736 6.75736C6.63214 7.88258 6 9.4087 6 11C6 18 3 20 3 20H21C21 20 18 18 18 11Z"
+              stroke="#8C8E8F"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.73 24C13.5542 24.3031 13.3019 24.5547 12.9982 24.7295C12.6946 24.9044 12.3504 24.9965 12 24.9965C11.6496 24.9965 11.3054 24.9044 11.0018 24.7295C10.6982 24.5547 10.4458 24.3031 10.27 24"
+              stroke="#8C8E8F"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle
+              className="animate-pulse"
+              cx="16"
+              cy="4.5"
+              r="3.5"
+              fill="url(#paint0_linear_415_1356)"
+              stroke="#212426"
+            />
+            <defs>
+              <linearGradient
+                id="paint0_linear_415_1356"
+                x1="16"
+                y1="0.5"
+                x2="16"
+                y2="8.5"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#D9896A" />
+                <stop offset="1" stop-color="#945439" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
         <img
           className="cursor-pointer"
           src="https://avatars.dicebear.com/api/pixel-art/smartaaaafht.svg"

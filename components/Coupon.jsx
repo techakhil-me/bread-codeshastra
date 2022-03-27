@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const Coupon = (props) => {
+  const [data, setdata] = useState({ ...props });
+  useEffect(() => {
+    data.userId = localStorage.getItem("userId");
+    setdata({ ...data });
+  }, []);
+  const save = () => {
+    fetch("https://bread-backend.herokuapp.com/offer/addOffer", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("saved");
+      })
+      .catch((error) => console.log("error", error));
+  };
+
   return (
     <div
       style={{ background: props.color }}
@@ -56,11 +74,14 @@ const Coupon = (props) => {
         </div> */}
       </div>
       <div className="coupon relative overflow-hidden w-64 h-full flex flex-col items-center justify-between pl-4 border-0 border-l-2 border-dashed border-black">
-        <img src={props?.coupon_image} alt="" className="h-16" />
+        <img src={props?.coupon_image} alt="" className="h-20" />
         <p class="text-xs font-medium tracking-widest leading-snug text-center text-gray-800 uppercase">
           Untill {props?.coupon_end.slice(0, 10)}
         </p>
-        <div className="cursor-pointer absolute transform curson-pointer translate-x-full transition duration-300 ease-in-out w-full h-full flex flex-col backdrop-blur-xl bg-gray-200/50 rounded-lg items-center justify-center">
+        <div
+          onClick={save}
+          className="cursor-pointer absolute transform curson-pointer translate-x-full transition duration-300 ease-in-out w-full h-full flex flex-col backdrop-blur-xl bg-gray-200/50 rounded-lg items-center justify-center"
+        >
           <p class="text-4xl font-semibold tracking-wide leading-10 text-white">
             SAVE
           </p>
