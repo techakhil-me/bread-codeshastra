@@ -5,7 +5,7 @@ import Navbar from '../../components/Navbar'
 const Saved = () => {
   const [data, setdata] = useState([])
   useEffect(() => {
-    fetch('https://nathuramgodse.me/offer/getsavedoffer', {
+    fetch('https://bread-backend.herokuapp.com/offer/getsavedoffer', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userId: localStorage.getItem('userId') }),
