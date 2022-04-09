@@ -7,7 +7,7 @@ const Coupon = (props) => {
     setdata({ ...data })
   }, [])
   const save = () => {
-    fetch('https://nathuramgodse.me/offer/addoffer', {
+    fetch('https://bread-backend.herokuapp.com/offer/addoffer', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
