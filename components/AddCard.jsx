@@ -14,7 +14,7 @@ const AddCard = ({ openAdd, setopenAdd }) => {
     setdata({ ...data })
   }, [])
   const addCard = () => {
-    fetch('https://nathuramgodse.me/card/addcard', {
+    fetch('https://bread-backend.herokuapp.com/card/addcard', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
