@@ -16,7 +16,7 @@ const Register = () => {
   const register = (e) => {
     e.preventDefault()
     // console.log(data);
-    fetch('https://nathuramgodse.me/user/register', {
+    fetch('https://bread-backend.herokuapp.com/user/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
