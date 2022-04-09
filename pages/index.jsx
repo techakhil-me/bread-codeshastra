@@ -31,7 +31,7 @@ const Home = () => {
     if (!localStorage.getItem('userId')) {
       router.push('/login')
     }
-    fetch('https://nathuramgodse.me/card/getcards', {
+    fetch('https://bread-backend.herokuapp.com/card/getcards', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userId: localStorage.getItem('userId') }),
@@ -42,7 +42,7 @@ const Home = () => {
       })
       .catch((error) => console.log('error', error))
 
-    fetch('https://nathuramgodse.me/offer/getoffer')
+    fetch('https://bread-backend.herokuapp.com/offer/getoffer')
       .then((response) => response.json())
       .then((result) => {
         setOffers(result.coupon)
